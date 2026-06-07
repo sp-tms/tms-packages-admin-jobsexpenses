@@ -22,7 +22,21 @@ class JobsExpenses
                     ]
                 ),
                 new Column(
-                    'first_name',
+                    'lr_id',
+                    [
+                        'type'          => Column::TYPE_INTEGER,
+                        'notNull'       => true,
+                    ]
+                ),
+                new Column(
+                    'expense_id',
+                    [
+                        'type'          => Column::TYPE_TINYINTEGER,
+                        'notNull'       => true,
+                    ]
+                ),
+                new Column(
+                    'expense_date',
                     [
                         'type'          => Column::TYPE_VARCHAR,
                         'size'          => 50,
@@ -30,11 +44,60 @@ class JobsExpenses
                     ]
                 ),
                 new Column(
-                    'last_name',
+                    'mode_of_payment',
+                    [
+                        'type'          => Column::TYPE_TINYINTEGER,
+                        'notNull'       => true,
+                    ]
+                ),
+                new Column(
+                    'tx_id',//If mode of payment is online
                     [
                         'type'          => Column::TYPE_VARCHAR,
-                        'size'          => 50,
-                        'notNull'       => true,
+                        'size'          => 100,
+                        'notNull'       => false,
+                    ]
+                ),
+                new Column(
+                    'quantity',
+                    [
+                        'type'          => Column::TYPE_FLOAT,
+                        'notNull'       => false,
+                    ]
+                ),
+                new Column(
+                    'quantity_uom_id',
+                    [
+                        'type'          => Column::TYPE_TINYINTEGER,
+                        'notNull'       => false,
+                    ]
+                ),
+                new Column(
+                    'rate',
+                    [
+                        'type'          => Column::TYPE_FLOAT,
+                        'notNull'       => false,
+                    ]
+                ),
+                new Column(
+                    'rate_uom_id',
+                    [
+                        'type'          => Column::TYPE_TINYINTEGER,
+                        'notNull'       => false,
+                    ]
+                ),
+                new Column(
+                    'amount',
+                    [
+                        'type'          => Column::TYPE_FLOAT,
+                        'notNull'       => false,
+                    ]
+                ),
+                new Column(//1 - Advance, 2 - Reimburse
+                    'type',
+                    [
+                        'type'          => Column::TYPE_TINYINTEGER,
+                        'notNull'       => false,
                     ]
                 )
             ],
@@ -42,7 +105,8 @@ class JobsExpenses
                 new Index(
                     'column_UNIQUE',
                     [
-                        'last_name'
+                        'expense_id',
+                        'voucher_no'
                     ],
                     'UNIQUE'
                 )
@@ -60,7 +124,8 @@ class JobsExpenses
             new Index(
                 'column_INDEX',
                 [
-                    'first_name'
+                    'expense_id',
+                    'voucher_no'
                 ],
                 'INDEX'
             )
