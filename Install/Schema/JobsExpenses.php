@@ -22,7 +22,21 @@ class JobsExpenses
                     ]
                 ),
                 new Column(
-                    'lr_id',
+                    'lr_no',
+                    [
+                        'type'          => Column::TYPE_INTEGER,
+                        'notNull'       => true,
+                    ]
+                ),
+                new Column(
+                    'voucher_no',
+                    [
+                        'type'          => Column::TYPE_INTEGER,
+                        'notNull'       => true,
+                    ]
+                ),
+                new Column(
+                    'employee_id',
                     [
                         'type'          => Column::TYPE_INTEGER,
                         'notNull'       => true,
@@ -51,10 +65,10 @@ class JobsExpenses
                     ]
                 ),
                 new Column(
-                    'tx_id',//If mode of payment is online
+                    'payment_tx_id',//If mode of payment is online
                     [
                         'type'          => Column::TYPE_VARCHAR,
-                        'size'          => 100,
+                        'size'          => 512,
                         'notNull'       => false,
                     ]
                 ),
@@ -93,10 +107,10 @@ class JobsExpenses
                         'notNull'       => false,
                     ]
                 ),
-                new Column(//1 - Advance, 2 - Reimburse
-                    'type',
+                new Column(
+                    'carry_forward',
                     [
-                        'type'          => Column::TYPE_TINYINTEGER,
+                        'type'          => Column::TYPE_BOOLEAN,
                         'notNull'       => false,
                     ]
                 )
@@ -105,8 +119,9 @@ class JobsExpenses
                 new Index(
                     'column_UNIQUE',
                     [
+                        'lr_no',
                         'expense_id',
-                        'voucher_no'
+                        'employee_id'
                     ],
                     'UNIQUE'
                 )
@@ -124,8 +139,9 @@ class JobsExpenses
             new Index(
                 'column_INDEX',
                 [
+                    'lr_no',
                     'expense_id',
-                    'voucher_no'
+                    'employee_id'
                 ],
                 'INDEX'
             )

@@ -8,7 +8,11 @@ class AppsTmsJobsExpenses extends BaseModel
 {
     public $id;
 
-    public $lr_id;
+    public $lr_no;
+
+    public $voucher_no;
+
+    public $employee_id;
 
     public $expense_id;
 
@@ -16,7 +20,7 @@ class AppsTmsJobsExpenses extends BaseModel
 
     public $mode_of_payment;
 
-    public $tx_id;
+    public $payment_tx_id;
 
     public $quantity;
 
@@ -28,5 +32,5 @@ class AppsTmsJobsExpenses extends BaseModel
 
     public $amount;
 
-    public $type;
+    public $carry_forward;
 }
